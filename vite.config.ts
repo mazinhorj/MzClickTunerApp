@@ -2,20 +2,17 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { VitePWA } from 'vite-plugin-pwa';
-//import basicSsl from '@vitejs/plugin-basic-ssl';
+
+const repoBase = '/MzClickTunerApp/';
 
 export default defineConfig({
-  server: {
-    // Permite qualquer subdomínio do ngrok ou hosts externos
-    allowedHosts: true
-  },
-  base: '/MzClickTunerApp/',
+  base: repoBase,
   plugins: [
     // basicSsl(),
     svelte(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icon.svg'],
       manifest: {
         name: 'MzClickTunerApp',
         short_name: 'MzClickTuner',
@@ -23,7 +20,9 @@ export default defineConfig({
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
-        orientation: 'portrait',
+        orientation: 'any',
+        start_url: repoBase,
+        scope: repoBase,
         icons: [
           {
             src: 'icon-192.png',

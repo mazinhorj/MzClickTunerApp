@@ -1,8 +1,10 @@
-import { mount } from 'svelte';
 import './app.css';
 import App from './App.svelte';
+import { registerSW } from 'virtual:pwa-register';
 
-const app = mount(App, {
+registerSW({ immediate: true });
+
+const app = new App({
   target: document.getElementById('app')!
 });
 
