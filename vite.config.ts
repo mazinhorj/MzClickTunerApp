@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   server: {
     // Permite qualquer subdomínio do ngrok ou hosts externos
-    allowedHosts: true,
+    allowedHosts: true
   },
   base: '/MzClickTunerApp/',
   plugins: [

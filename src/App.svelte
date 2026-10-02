@@ -104,20 +104,26 @@
   }
 
   onMount(() => {
-    lastOrientation = window.matchMedia('(orientation: portrait)').matches ? 'portrait' : 'landscape';
+    lastOrientation = window.matchMedia('(orientation: portrait)').matches
+      ? 'portrait'
+      : 'landscape';
     handleOrientationAndResize();
 
     window.addEventListener('resize', handleOrientationAndResize);
-    window.matchMedia('(orientation: portrait)').addEventListener('change', handleOrientationAndResize);
+    window
+      .matchMedia('(orientation: portrait)')
+      .addEventListener('change', handleOrientationAndResize);
 
     return () => {
       window.removeEventListener('resize', handleOrientationAndResize);
-      window.matchMedia('(orientation: portrait)').removeEventListener('change', handleOrientationAndResize);
+      window
+        .matchMedia('(orientation: portrait)')
+        .removeEventListener('change', handleOrientationAndResize);
     };
   });
 </script>
 
-<main 
+<main
   class="app-container"
   on:touchstart={handleTouchStart}
   on:touchmove={handleTouchMove}
@@ -126,14 +132,11 @@
   <header>
     <h1>MzClickTuner</h1>
     <div class="tabs">
-      <button 
-        class="tab-btn {showTuner ? 'active' : ''}" 
-        on:click={() => toggleView('tuner')}
-      >
+      <button class="tab-btn {showTuner ? 'active' : ''}" on:click={() => toggleView('tuner')}>
         Afinador
       </button>
-      <button 
-        class="tab-btn {showMetronome ? 'active' : ''}" 
+      <button
+        class="tab-btn {showMetronome ? 'active' : ''}"
         on:click={() => toggleView('metronome')}
       >
         Metrônomo
@@ -167,7 +170,13 @@
     margin: 0;
     padding: 0;
     background-color: #0d0f12;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
     color: #f4f4f5;
   }
 

@@ -58,9 +58,9 @@
 <div class="card">
   <!-- Seletor de Compasso com 6/8 incluído -->
   <div class="time-signatures">
-    {#each [{ label: '2/4', val: 2 }, { label: '3/4', val: 3 }, { label: '4/4', val: 4 }, { label: '6/8', val: 6 }] as sig}
-      <button 
-        class="sig-btn {beatsPerBar === sig.val ? 'active' : ''}" 
+    {#each [{ label: '2/4', val: 2 }, { label: '3/4', val: 3 }, { label: '4/4', val: 4 }, { label: '6/8', val: 6 }] as sig (sig.val)}
+      <button
+        class="sig-btn {beatsPerBar === sig.val ? 'active' : ''}"
         on:click={() => setBeats(sig.val)}
       >
         {sig.label}
@@ -70,13 +70,16 @@
 
   <!-- Indicadores Visuais de Pulso -->
   <div class="beat-indicators {beatsPerBar === 6 ? 'six-eight' : ''}">
-    {#each Array(beatsPerBar) as _, i}
-      <div 
-        class="dot 
-          {activeBeat === i ? (
-            currentStrength === 'strong' ? 'accent-strong' : 
-            currentStrength === 'medium' ? 'accent-medium' : 'active'
-          ) : ''}"
+    {#each Array(beatsPerBar) as _, i (i)}
+      <div
+        class="dot
+          {activeBeat === i
+          ? currentStrength === 'strong'
+            ? 'accent-strong'
+            : currentStrength === 'medium'
+              ? 'accent-medium'
+              : 'active'
+          : ''}"
       >
         <span class="dot-num">{i + 1}</span>
       </div>
@@ -320,7 +323,9 @@
     padding: 18px;
     border-radius: 16px;
     cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.1s ease,
+      box-shadow 0.2s ease;
   }
 
   .action-btn:active {

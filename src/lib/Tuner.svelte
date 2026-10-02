@@ -13,8 +13,8 @@
         await tuner.start();
         listening = true;
         loop();
-      } catch (err: any) {
-        alert("Erro no microfone: " + (err.message || err.name));
+      } catch (err: unknown) {
+        alert('Erro no microfone: ' + (err.message || err.name));
       }
     } else {
       tuner.stop();
@@ -62,8 +62,8 @@
 <div class="card">
   <!-- LED / Dot Indicador Central no Topo -->
   <div class="top-status-indicator">
-    <div 
-      class="status-dot {result?.inTune ? 'locked' : ''}" 
+    <div
+      class="status-dot {result?.inTune ? 'locked' : ''}"
       style="
         background-color: {result ? currentColor : '#1f242e'}; 
         box-shadow: {result ? `0 0 18px ${currentColor}` : 'none'};
@@ -75,9 +75,11 @@
   <!-- Mostrador Analógico -->
   <div class="meter-wrapper">
     <div class="meter">
-      <div 
-        class="gauge-arc" 
-        style="border-color: {result ? currentColor : '#2e3440'}; opacity: {result ? '0.75' : '0.4'};"
+      <div
+        class="gauge-arc"
+        style="border-color: {result ? currentColor : '#2e3440'}; opacity: {result
+          ? '0.75'
+          : '0.4'};"
       ></div>
 
       <!-- Apenas os limites laterais (-50 e +50), sem o 0 escondido no meio -->
@@ -87,8 +89,8 @@
       </div>
 
       <!-- Agulha reativa -->
-      <div 
-        class="needle" 
+      <div
+        class="needle"
         style="
           transform: rotate({needleAngle}deg); 
           background: {currentColor};
@@ -122,8 +124,8 @@
       <div class="zone zone-center"></div>
       <div class="zone zone-mid-sharp"></div>
       <div class="zone zone-far-sharp"></div>
-      <div 
-        class="scale-cursor" 
+      <div
+        class="scale-cursor"
         style="
           left: calc(50% + {(needleAngle / 50) * 45}%); 
           background: {currentColor};
@@ -193,8 +195,14 @@
   }
 
   @keyframes dot-pulse {
-    0% { transform: scale(1.2); box-shadow: 0 0 14px #22c55e; }
-    100% { transform: scale(1.45); box-shadow: 0 0 24px #22c55e; }
+    0% {
+      transform: scale(1.2);
+      box-shadow: 0 0 14px #22c55e;
+    }
+    100% {
+      transform: scale(1.45);
+      box-shadow: 0 0 24px #22c55e;
+    }
   }
 
   /* Mostrador */
@@ -220,7 +228,9 @@
     border-radius: 50%;
     border: 5px dashed;
     box-sizing: border-box;
-    transition: border-color 0.15s ease, opacity 0.15s ease;
+    transition:
+      border-color 0.15s ease,
+      opacity 0.15s ease;
   }
 
   .gauge-ticks {
@@ -245,7 +255,9 @@
     height: 135px;
     border-radius: 4px;
     transform-origin: bottom center;
-    transition: transform 0.06s cubic-bezier(0.1, 0.7, 0.1, 1), background-color 0.12s ease;
+    transition:
+      transform 0.06s cubic-bezier(0.1, 0.7, 0.1, 1),
+      background-color 0.12s ease;
   }
 
   .needle-base {
@@ -297,13 +309,23 @@
   }
 
   @keyframes pop {
-    0% { transform: scale(0.6); opacity: 0.4; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+      transform: scale(0.6);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
   @keyframes thumbs {
-    0% { transform: scale(0.5) rotate(-20deg); }
-    100% { transform: scale(1.15) rotate(0deg); }
+    0% {
+      transform: scale(0.5) rotate(-20deg);
+    }
+    100% {
+      transform: scale(1.15) rotate(0deg);
+    }
   }
 
   /* Régua Horizontal */
@@ -324,12 +346,31 @@
     border: 1px solid #1f242e;
   }
 
-  .zone { flex: 1; height: 100%; }
-  .zone-far-flat { background: #ef4444; opacity: 0.4; }
-  .zone-mid-flat { background: #f97316; opacity: 0.4; }
-  .zone-center { background: #22c55e; opacity: 0.8; flex: 0.6; }
-  .zone-mid-sharp { background: #f97316; opacity: 0.4; }
-  .zone-far-sharp { background: #ef4444; opacity: 0.4; }
+  .zone {
+    flex: 1;
+    height: 100%;
+  }
+  .zone-far-flat {
+    background: #ef4444;
+    opacity: 0.4;
+  }
+  .zone-mid-flat {
+    background: #f97316;
+    opacity: 0.4;
+  }
+  .zone-center {
+    background: #22c55e;
+    opacity: 0.8;
+    flex: 0.6;
+  }
+  .zone-mid-sharp {
+    background: #f97316;
+    opacity: 0.4;
+  }
+  .zone-far-sharp {
+    background: #ef4444;
+    opacity: 0.4;
+  }
 
   .scale-cursor {
     position: absolute;
@@ -338,7 +379,9 @@
     height: 100%;
     border-radius: 999px;
     transform: translateX(-50%);
-    transition: left 0.06s ease, background 0.12s ease;
+    transition:
+      left 0.06s ease,
+      background 0.12s ease;
     box-shadow: 0 0 8px currentColor;
   }
 
@@ -395,7 +438,9 @@
     border-radius: 16px;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(0, 210, 211, 0.35);
-    transition: transform 0.1s ease, background-color 0.2s ease;
+    transition:
+      transform 0.1s ease,
+      background-color 0.2s ease;
   }
 
   .action-btn:active {
