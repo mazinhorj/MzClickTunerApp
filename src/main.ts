@@ -7,7 +7,7 @@ import { registerSW } from 'virtual:pwa-register';
 registerSW({ immediate: true });
 
 const app = mount(App, {
-  target: document.getElementById('app')!,
+  target: document.getElementById('app')!
 });
 
 export default app;
